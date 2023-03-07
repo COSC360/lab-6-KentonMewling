@@ -12,6 +12,23 @@
 
   <!-- Add button and table here -->
 
+  <p><button onclick="readdata()" class="btn btn-primary" type="button">Get City Info</button></p>
+
+  <table>
+    <th>
+      <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>ISO</td>
+        <td>Longitude</td>
+        <td>Population</td>
+        <td>Elevation</td>
+      </tr>
+    </th>
+  </table>
+
+
+
   <script>
   //set interval timers to trigger the refresh.  Here the callback function will
   //be called when the timer fires
@@ -38,13 +55,26 @@
                             //Vanilla JS
                             //document.getElementById("time_two").innerHTML = data.time;
                             //jQuery
+
                             $("#time_two").html("Remote server time: " + data.time);
                               });
       results.fail(function(jqXHR) {console.log("Error: " + jqXHR.status);});
       results.always(function() {console.log("done");});
 
-
   }
+  function readdata(){
+    var results = $.get("https://www.randyconnolly.com/funwebdev/services/travel/cities.php");
+        results.done(function(data) {
+                                console.log(data);
+                                //Vanilla JS
+                                //document.getElementById("time_two").innerHTML = data.time;
+                                //jQuery
+
+                          
+                                  });
+          results.fail(function(jqXHR) {console.log("Error: " + jqXHR.status);});
+          results.always(function() {console.log("done");});
+      }
   </script>
 
   </body>
