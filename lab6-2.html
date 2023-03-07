@@ -10,21 +10,14 @@
 
   <p id="time_two"></p>
 
+  
   <!-- Add button and table here -->
 
   <p><button onclick="readdata()" class="btn btn-primary" type="button">Get City Info</button></p>
 
-  <table>
-    <th>
-      <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>ISO</td>
-        <td>Longitude</td>
-        <td>Population</td>
-        <td>Elevation</td>
-      </tr>
-    </th>
+  <table id="datat">
+  
+
   </table>
 
 
@@ -65,12 +58,18 @@
   function readdata(){
     var results = $.get("https://www.randyconnolly.com/funwebdev/services/travel/cities.php");
         results.done(function(data) {
-                                console.log(data);
                                 //Vanilla JS
                                 //document.getElementById("time_two").innerHTML = data.time;
                                 //jQuery
-
-                          
+                                
+                                      var	table	=	$('#datat');
+                                      table.append('<tr>'+ '<td>' + 'id' + '</td>' + '<td>' + 'name' + '</td>' +'<td>' + 'iso' + '</td>' + '<td>' + 'latitude' + '</td>' + '<td>' + 'longitude' + '</td>' + '<td>' + 'population' + '</td>' + '<td>' + 'elevation' + '</td>' +'</tr>');
+                                      for (var i = 0; i < data.length; i++) 
+                                      {
+                                          table.append('<tr>'+ '<td>' + data[i].id + '</td>' + '<td>' + data[i].name + '</td>' +'<td>' + data[i].iso + '</td>' + '<td>' + data[i].latitude + '</td>' + '<td>' + data[i].longitude + '</td>' + '<td>' + data[i].population + '</td>' + '<td>' + data[i].elevation + '</td>' +'</tr>');     
+                                      }
+                                 
+                                    
                                   });
           results.fail(function(jqXHR) {console.log("Error: " + jqXHR.status);});
           results.always(function() {console.log("done");});
