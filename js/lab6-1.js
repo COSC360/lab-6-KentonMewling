@@ -51,14 +51,15 @@ $(document).ready(function () {
         
         preview.append(image);
         preview.append(caption);
-        $(this).append(preview);
+        $(this).after(preview);
         $(this).addClass('gray');
-        $("#preview").fadeIn(1000);
+        $("#preview").fadeIn('1000');
 
         }));
     $("#stories img").on("mouseleave", (function(){
-        $("#preview").fadeOut(1000);
+        $("#preview").fadeOut('1000');
         $(this).removeClass('gray');
+        $(preview).remove();
     }));
 
 
